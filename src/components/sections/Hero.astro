@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import jessicaTesouras from '../../assets/jessica-tesouras.png';
+import { SITE, CONTACT, CITY } from '../../config/site';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="inicio" class="relative flex flex-col overflow-hidden lg:block lg:min-h-[92svh]">
+  {/* Brilhos decorativos suaves */}
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-copper/15 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute top-1/3 -left-32 h-80 w-80 rounded-full bg-cream/80 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-6xl px-4 pt-32 sm:px-6 lg:py-40">
+    <div class="max-w-xl lg:max-w-[48%]">
+      <p
+        class="hero-descend inline-flex items-center gap-2 rounded-full border border-copper/25 bg-cream/85 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-copper-dark uppercase"
+      >
+        <Icon name="paw" class="h-4 w-4" />
+        {SITE.yearsInMarket} anos de cuidados com os pets
+      </p>
+
+      <h1
+        class="hero-descend hero-delay-1 mt-6 font-display text-[clamp(2.4rem,1.7rem+3vw,4rem)] leading-[1.1] font-semibold tracking-tight text-ink"
+      >
+        <span class="sr-only">{SITE.name}, Banho e Tosa. </span>
+        {SITE.taglineStart + ' '}
+        <span class="text-copper-gradient">{SITE.taglineHighlight}</span>
+      </h1>
+
+      <p
+        class="hero-descend hero-delay-2 mt-5 max-w-md text-base leading-relaxed text-ink/75 sm:text-lg"
+      >
+        {SITE.positioning}{CITY ? ` em ${CITY}` : ''}, com atendimento carinhoso, calmo e um
+        acabamento que só quem ama o que faz consegue entregar.
+      </p>
+
+      <div class="hero-descend hero-delay-3 mt-9 flex flex-wrap items-center gap-4">
+        <Button href={CONTACT.whatsappUrl} size="lg" external whatsapp analytics="hero">
+          <Icon name="whatsapp" class="h-5 w-5" />
+          Agendar no WhatsApp
+        </Button>
+        <Button href="#galeria" variant="secondary" size="lg">Ver trabalhos</Button>
+      </div>
+    </div>
+  </div>
+
+  {/*
+    Figura recortada emergindo da borda inferior: máscara de degradê funde a
+    base dela com o fundo, e o palco circular em degradê cobre dá profundidade.
+  */}
+  <div
+    class="hero-descend hero-delay-2 relative order-2 mx-auto mt-2 w-[min(94vw,27rem)] lg:absolute lg:right-[4%] lg:bottom-0 lg:mx-0 lg:mt-0 lg:w-[45%] lg:max-w-[650px]"
+  >
+    <div
+      class="bg-copper-gradient absolute bottom-[12%] left-1/2 aspect-square w-[104%] -translate-x-1/2 rounded-full opacity-15"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute bottom-[9%] left-1/2 aspect-square w-[114%] -translate-x-1/2 rounded-full border border-copper/25"
+      aria-hidden="true"
+    >
+    </div>
+    <Image
+      src={jessicaTesouras}
+      alt="Jessica sorrindo com duas tesouras de tosa nas mãos"
+      widths={[440, 708]}
+      sizes="(min-width: 1024px) 38vw, 82vw"
+      quality={88}
+      loading="eager"
+      fetchpriority="high"
+      class="hero-float relative w-full [mask-image:linear-gradient(to_top,transparent_3%,black_34%)]"
+    />
+  </div>
+
+  <a
+    href="#sobre"
+    class="animate-bob absolute bottom-5 left-[24%] z-10 hidden -translate-x-1/2 text-copper-dark lg:block"
+    aria-label="Rolar para a seção Sobre"
+  >
+    <Icon name="chevron-down" class="h-6 w-6" />
+  </a>
+</section>

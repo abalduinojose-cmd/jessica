@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import jessicaTesoura from '../../assets/jessica-tesoura.jpg';
+import { SITE } from '../../config/site';
+import { credentials } from '../../data/credentials';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="sobre" class="bg-cream py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="max-w-2xl">
+      <SectionTitle align="left" eyebrow="Quem sou eu" title="Muito prazer, eu sou a Jessica" />
+      <div class="reveal mt-6 space-y-4 leading-relaxed text-ink/75" style="--reveal-delay: 0.1s">
+        <p>
+          Há {SITE.yearsInMarket} anos eu transformo banho e tosa em um momento de cuidado de
+          verdade. Sou formada em banho e tosa e me especializei no que mais amo fazer:
+          penteados e estilização pet.
+        </p>
+        <p>
+          Aqui o seu pet não é “mais um da fila”. Cada atendimento é feito com calma, carinho e
+          atenção aos detalhes, do primeiro contato até o lacinho final. Fiz da minha paixão a
+          minha profissão, e isso aparece em cada trabalho.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <figure class="reveal relative mx-auto w-full max-w-sm">
+        <div
+          class="absolute -inset-3 rotate-2 rounded-[2.5rem] border border-copper/20"
+          aria-hidden="true"
+        >
+        </div>
+        {/* object-position baixo corta o topo da selfie e enquadra o rosto e a tesoura */}
+        <Image
+          src={jessicaTesoura}
+          alt="Jessica sorrindo com a tesoura de tosa na mão, no estúdio"
+          widths={[480, 768]}
+          sizes="(min-width: 1024px) 384px, 90vw"
+          quality={82}
+          loading="lazy"
+          class="relative aspect-4/5 w-full rounded-[2.25rem] object-cover object-[50%_74%] shadow-soft"
+        />
+      </figure>
+
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          credentials.map((credential, index) => (
+            <li
+              class="reveal flex items-center gap-4 rounded-2xl border border-copper/10 bg-blush/30 px-5 py-4"
+              style={`--reveal-delay: ${0.08 * index}s`}
+            >
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-cream text-copper-dark shadow-softer">
+                <Icon name={credential.icon} class="h-5.5 w-5.5" />
+              </span>
+              <span class="text-sm font-semibold text-ink">{credential.title}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

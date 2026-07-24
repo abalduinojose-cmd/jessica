@@ -1,0 +1,39 @@
+---
+import { testimonials } from '../../data/testimonials';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="depoimentos" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionTitle
+      eyebrow="Depoimentos"
+      title="Tutores felizes, pets mais ainda"
+      subtitle="A confiança de quem já deixou o seu melhor amigo nas minhas mãos."
+    />
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {
+        testimonials.map((testimonial, index) => (
+          <Card class="reveal flex flex-col" style={`--reveal-delay: ${0.08 * index}s`}>
+            <div class="flex gap-1 text-copper" role="img" aria-label={`Avaliação: ${testimonial.rating} de 5 estrelas`}>
+              {Array.from({ length: testimonial.rating }).map(() => (
+                <Icon name="star" class="h-4.5 w-4.5" />
+              ))}
+            </div>
+            <blockquote class="mt-4 flex-1 text-sm leading-relaxed text-ink/75">
+              “{testimonial.text}”
+            </blockquote>
+            <footer class="mt-6 border-t border-copper/15 pt-4">
+              <p class="text-sm font-bold text-ink">{testimonial.tutorName}</p>
+              <p class="text-xs text-ink/60">
+                Tutor(a) de {testimonial.petName} · {testimonial.petBreed}
+              </p>
+            </footer>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>

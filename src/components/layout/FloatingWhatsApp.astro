@@ -1,0 +1,24 @@
+---
+import { CONTACT } from '../../config/site';
+import Icon from '../ui/Icon.astro';
+
+/*
+ * A visibilidade (classe .is-visible) é controlada pelo IntersectionObserver
+ * do BaseLayout: o botão só aparece depois que o hero sai da tela.
+ * O halo pulsante (.fab-halo) é definido em global.css.
+ */
+---
+
+<a
+  id="whatsapp-flutuante"
+  href={CONTACT.whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-analytics="whatsapp-click"
+  data-section="flutuante"
+  aria-label="Conversar com a Jessica no WhatsApp"
+  class="group fixed right-5 bottom-5 z-50 grid h-15 w-15 place-items-center rounded-full bg-gradient-to-br from-[#2ce07a] to-[#0e9e6e] text-white shadow-[0_14px_34px_-10px_rgba(14,158,110,0.65)] ring-2 ring-white/40 transition-transform duration-300 hover:scale-105"
+>
+  <span class="fab-halo" aria-hidden="true"></span>
+  <Icon name="whatsapp" class="h-7.5 w-7.5 drop-shadow-sm" />
+</a>

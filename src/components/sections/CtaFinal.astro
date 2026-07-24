@@ -1,0 +1,40 @@
+---
+import { SITE, CONTACT } from '../../config/site';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="agendar" class="relative overflow-hidden py-24 lg:py-32">
+  <div
+    class="pointer-events-none absolute -top-20 right-10 h-72 w-72 rounded-full bg-copper/15 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-24 -left-16 h-80 w-80 rounded-full bg-cream/70 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
+    <p class="reveal mx-auto w-max text-copper-dark">
+      <Icon name="paw" class="h-10 w-10" />
+    </p>
+    <h2
+      class="reveal mt-4 font-display text-[clamp(2rem,1.5rem+2.5vw,3.4rem)] leading-tight font-semibold tracking-tight text-ink"
+      style="--reveal-delay: 0.08s"
+    >
+      Seu pet merece esse <span class="text-copper-gradient">carinho</span>
+    </h2>
+    <p class="reveal mx-auto mt-5 max-w-xl leading-relaxed text-ink/70" style="--reveal-delay: 0.16s">
+      {SITE.tagline} Agende um horário e deixe o seu melhor amigo ainda mais bonito, cheiroso e
+      feliz.
+    </p>
+    <div class="reveal mt-9" style="--reveal-delay: 0.24s">
+      <Button href={CONTACT.whatsappUrl} size="lg" external whatsapp analytics="cta-final">
+        <Icon name="whatsapp" class="h-6 w-6" />
+        Agendar no WhatsApp
+      </Button>
+    </div>
+  </div>
+</section>

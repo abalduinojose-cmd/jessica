@@ -1,0 +1,22 @@
+/** Nomes de ícones disponíveis em src/components/ui/Icon.astro */
+export type IconName =
+  | 'paw'
+  | 'scissors'
+  | 'droplet'
+  | 'sparkles'
+  | 'shield'
+  | 'heart'
+  | 'award'
+  | 'graduation'
+  | 'clock'
+  | 'star'
+  | 'whatsapp'
+  | 'instagram'
+  | 'chevron-down'
+  | 'check'
+  | 'brush'
+  | 'ear'
+  | 'crown'
+  | 'calendar'
+  | 'menu'
+  | 'close';

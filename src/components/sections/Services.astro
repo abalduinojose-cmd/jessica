@@ -1,0 +1,42 @@
+---
+import { CONTACT } from '../../config/site';
+import { services } from '../../data/services';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="servicos" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionTitle
+      eyebrow="Serviços"
+      title="Cuidado completo, do banho ao lacinho"
+      subtitle="Tudo o que o seu pet precisa para ficar bonito, saudável e confortável, feito com técnica e muito carinho."
+    />
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service, index) => (
+          <Card class="reveal flex flex-col" style={`--reveal-delay: ${0.07 * index}s`}>
+            <span class="grid h-13 w-13 place-items-center rounded-2xl bg-blush/70 text-copper-dark">
+              <Icon name={service.icon} class="h-6 w-6" />
+            </span>
+            <h3 class="mt-5 font-display text-xl font-semibold text-ink">{service.title}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-ink/70">{service.description}</p>
+            <a
+              href={CONTACT.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics="whatsapp-click"
+              data-section={`servicos-${service.slug}`}
+              class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-copper-dark underline-offset-4 hover:underline"
+            >
+              Agendar este serviço
+              <span aria-hidden="true">→</span>
+            </a>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>

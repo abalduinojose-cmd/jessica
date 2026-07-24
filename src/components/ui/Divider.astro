@@ -1,0 +1,14 @@
+---
+interface Props {
+  center?: boolean;
+  class?: string;
+}
+
+const { center = false, class: className } = Astro.props;
+---
+
+<div
+  class:list={['bg-copper-gradient h-px w-16 rounded-full', center && 'mx-auto', className]}
+  aria-hidden="true"
+>
+</div>

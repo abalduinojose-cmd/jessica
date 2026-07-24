@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import logoDark from '../../assets/logo/jg-dark.png';
+import { SITE, CONTACT, NAV_LINKS } from '../../config/site';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden bg-ink text-cream/70">
+  {/* Fio de assinatura em degradê cobre */}
+  <div class="bg-copper-gradient h-0.5 w-full" aria-hidden="true"></div>
+  <div
+    class="pointer-events-none absolute -top-32 right-0 h-80 w-80 rounded-full bg-copper/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr_1fr] lg:gap-16">
+      <div>
+        <Image
+          src={logoDark}
+          alt={`Logo ${SITE.legalName}`}
+          widths={[200, 400]}
+          sizes="176px"
+          quality={85}
+          loading="lazy"
+          class="w-44"
+        />
+        <p class="mt-5 max-w-xs text-sm leading-relaxed">{SITE.tagline}</p>
+        <div class="mt-6 flex gap-3">
+          <a
+            href={CONTACT.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram da Jessica Groomer"
+            class="grid h-11 w-11 place-items-center rounded-full border border-cream/15 text-cream/70 transition-colors hover:border-copper-light hover:text-copper-light"
+          >
+            <Icon name="instagram" class="h-5 w-5" />
+          </a>
+          <a
+            href={CONTACT.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics="whatsapp-click"
+            data-section="footer-social"
+            aria-label="WhatsApp da Jessica Groomer"
+            class="grid h-11 w-11 place-items-center rounded-full border border-cream/15 text-cream/70 transition-colors hover:border-copper-light hover:text-copper-light"
+          >
+            <Icon name="whatsapp" class="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label="Navegação do rodapé">
+        <p class="text-xs font-bold tracking-[0.3em] text-copper-light uppercase">Navegação</p>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a class="transition-colors hover:text-copper-light" href={link.href}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <p class="text-xs font-bold tracking-[0.3em] text-copper-light uppercase">Agende</p>
+        <p class="mt-5 max-w-xs text-sm leading-relaxed">
+          Garanta o horário do seu pet e deixe o resto com a gente.
+        </p>
+        <Button href={CONTACT.whatsappUrl} external whatsapp analytics="footer-cta" class="mt-6">
+          <Icon name="calendar" class="h-4 w-4" />
+          Agendar um horário
+        </Button>
+      </div>
+    </div>
+
+    <div
+      class="mt-14 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 text-xs text-cream/45 sm:flex-row"
+    >
+      <p>© {year} {SITE.legalName}. Todos os direitos reservados.</p>
+      <p class="inline-flex items-center gap-1.5">
+        Feito com <Icon name="heart" class="h-3.5 w-3.5 text-copper-light" /> para os pets
+      </p>
+    </div>
+  </div>
+</footer>

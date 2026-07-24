@@ -1,0 +1,48 @@
+---
+import { CONTACT } from '../../config/site';
+import { videos } from '../../data/videos';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="videos" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionTitle
+      eyebrow="Nos bastidores"
+      title="A Jessica em ação"
+      subtitle="Direto do Instagram: um pouquinho do dia a dia, do processo e dos resultados."
+    />
+
+    <div class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-3">
+      {
+        videos.map((video, index) => (
+          <figure
+            class="reveal overflow-hidden rounded-3xl bg-cream shadow-softer"
+            style={`--reveal-delay: ${0.08 * index}s`}
+          >
+            {/* preload="metadata" carrega só o primeiro quadro como capa */}
+            <video
+              class="aspect-9/16 w-full bg-ink/5 object-cover"
+              src={video.src}
+              controls
+              preload="metadata"
+              playsinline
+              aria-label={video.title}
+            />
+            <figcaption class="px-4 py-3 text-xs leading-relaxed text-ink/70">
+              {video.title}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 text-center">
+      <Button href={CONTACT.instagramUrl} variant="secondary" external>
+        <Icon name="instagram" class="h-5 w-5" />
+        Ver mais no {CONTACT.instagramHandle}
+      </Button>
+    </div>
+  </div>
+</section>

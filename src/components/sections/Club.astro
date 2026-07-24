@@ -1,0 +1,78 @@
+---
+import { CONTACT } from '../../config/site';
+import { clubPlans } from '../../data/club';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<section id="clubinho" class="bg-cream py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionTitle
+      eyebrow="Clubinho JG"
+      title="Assinatura mensal de bem-estar"
+      subtitle="Seu pet sempre limpo, cheiroso e penteado, com economia e prioridade na agenda."
+    />
+
+    {/* TODO: valores de demonstração — remover este aviso quando os planos reais entrarem */}
+    <p
+      class="reveal mx-auto mt-6 w-max max-w-full rounded-full border border-copper/25 bg-blush/50 px-5 py-2 text-center text-xs font-semibold text-copper-dark"
+    >
+      ✨ Planos e valores ilustrativos, apenas para demonstração
+    </p>
+
+    <div class="mx-auto mt-14 grid max-w-3xl items-stretch gap-6 sm:grid-cols-2">
+      {
+        clubPlans.map((plan, index) => (
+          <article
+            class:list={[
+              'reveal relative flex flex-col rounded-3xl p-8',
+              plan.featured
+                ? 'bg-blush/60 shadow-soft ring-2 ring-copper lg:-my-3 lg:py-11'
+                : 'bg-cream shadow-softer ring-1 ring-copper/15',
+            ]}
+            style={`--reveal-delay: ${0.08 * index}s`}
+          >
+            {plan.badge && (
+              <p class="bg-copper-gradient absolute -top-3.5 left-1/2 w-max -translate-x-1/2 rounded-full px-4 py-1.5 text-xs font-bold tracking-wide text-white uppercase">
+                {plan.badge}
+              </p>
+            )}
+
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-cream text-copper-dark shadow-softer">
+              <Icon name={plan.icon} class="h-6 w-6" />
+            </span>
+
+            <h3 class="mt-5 font-display text-2xl font-semibold text-ink">{plan.name}</h3>
+            <p class="mt-1 text-sm text-ink/65">{plan.description}</p>
+
+            <p class="mt-6 flex items-baseline gap-1">
+              <span class="font-display text-5xl font-semibold text-ink">{plan.price}</span>
+              <span class="text-sm font-medium text-ink/60">{plan.period}</span>
+            </p>
+
+            <ul class="mt-6 flex-1 space-y-3">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2.5 text-sm leading-relaxed text-ink/75">
+                  <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-copper-dark" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <Button
+              href={CONTACT.whatsappUrl}
+              variant={plan.featured ? 'primary' : 'secondary'}
+              external
+              whatsapp
+              analytics={`clubinho-${plan.slug}`}
+              class="mt-8 w-full"
+            >
+              Quero esse plano
+            </Button>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

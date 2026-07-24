@@ -1,0 +1,48 @@
+---
+import { faq } from '../../data/faq';
+import SectionTitle from '../ui/SectionTitle.astro';
+import Icon from '../ui/Icon.astro';
+
+/* JSON-LD FAQPage gerado do mesmo array que alimenta o componente (DRY) */
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<section id="faq" class="bg-cream py-24 lg:py-32">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <SectionTitle
+      eyebrow="Dúvidas frequentes"
+      title="Tudo o que você quer saber"
+      subtitle="Ficou com alguma dúvida? É só chamar no WhatsApp que eu respondo rapidinho."
+    />
+
+    <div class="mt-12 space-y-4">
+      {
+        faq.map((item, index) => (
+          <details
+            class="group reveal rounded-2xl border border-copper/15 bg-blush/30 open:bg-blush/50"
+            style={`--reveal-delay: ${0.06 * index}s`}
+          >
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+              {item.question}
+              <Icon
+                name="chevron-down"
+                class="h-5 w-5 shrink-0 text-copper-dark transition-transform duration-300 group-open:rotate-180"
+              />
+            </summary>
+            <p class="px-6 pb-6 text-sm leading-relaxed text-ink/75">{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>

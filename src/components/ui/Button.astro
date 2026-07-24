@@ -1,0 +1,51 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  external?: boolean;
+  /** Nome da seção de origem — vira data-section no evento de analytics */
+  analytics?: string;
+  /** Marca o CTA como clique de WhatsApp (data-analytics="whatsapp-click") */
+  whatsapp?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  external = false,
+  analytics,
+  whatsapp = false,
+  ariaLabel,
+  class: className,
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 will-change-transform hover:-translate-y-0.5 active:translate-y-0';
+
+const variants: Record<string, string> = {
+  primary: 'bg-copper-gradient text-white shadow-soft hover:shadow-softer',
+  secondary:
+    'border border-copper/40 bg-cream/60 text-copper-dark hover:border-copper hover:bg-cream',
+  ghost: 'text-copper-dark underline-offset-4 hover:underline',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-sm sm:text-base',
+  lg: 'px-8 py-4 text-base sm:text-lg',
+};
+---
+
+<a
+  href={href}
+  class:list={[base, variants[variant], sizes[size], className]}
+  aria-label={ariaLabel}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+  {...whatsapp ? { 'data-analytics': 'whatsapp-click', 'data-section': analytics } : {}}
+>
+  <slot />
+</a>

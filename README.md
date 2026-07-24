@@ -60,3 +60,4 @@ Depois do deploy, **atualize o domínio real** em `astro.config.mjs` (campo `sit
 - [ ] **Depoimentos reais** em `src/data/testimonials.ts`
 - [ ] **Planos reais do Clubinho** em `src/data/club.ts` (os atuais são fictícios, para demonstração)
 - [ ] **Domínio definitivo** em `astro.config.mjs` e `public/robots.txt`
+
